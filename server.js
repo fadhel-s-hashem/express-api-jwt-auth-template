@@ -25,8 +25,10 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 // Routes go here
-app.get('/auth/sign-token', authCtrl.signToken)
-app.get('/auth/verify-token', authCtrl.verifyToken)
+// app.get('/auth/sign-token', authCtrl.signToken)
+// app.get('/auth/verify-token', authCtrl.verifyToken)
+// app.post('/auth/sign-up', authCtrl.signUp)
+app.post('/auth/sign-up', authCtrl.signUp)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)
