@@ -1,3 +1,4 @@
+// Add in the jsonwebtoken package
 const jwt = require('jsonwebtoken')
 
 const signToken = (req,res) => {
@@ -13,6 +14,14 @@ const signToken = (req,res) => {
     res.json(token)
 }
 
+const verifyToken = (req, res) => {
+    const token = req.headers.authorization
+    res.json({ message: 'token is valid' })
+
+    res.json({ token })
+}
+
 module.exports ={
-    signToken
+    signToken,
+    verifyToken
 }
