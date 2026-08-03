@@ -45,8 +45,12 @@ const signUp = async (req,res) => {
 
         
         const user = await User.create(userData) 
+        // create the payload
+            const payload = {username: user.username, _id:user._id}
+        // create the token+ secret
+            const token = jwt.sign({payload}, process.env.JWT_SECRET)
 
-        res.json({user})
+        res.json({token})
         
     } catch (err) {
         res.json({ err: err.message })
