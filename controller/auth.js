@@ -35,6 +35,7 @@ const signUp = async (req,res) => {
         if (userInDatabase){
             return res.status(409).json({err:'Username already taken.'})
         }
+        // for the password securety
         const hashedpassword = bcrypt.hashSync(req.body.password, 10)
 
         const userData = {

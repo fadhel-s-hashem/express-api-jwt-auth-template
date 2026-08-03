@@ -11,6 +11,13 @@ const userSchema = new mongoose.Schema({
     },
 }, {timestamps: true})
 
+// so wehem call json noone see password (for now its error)
+userSchema.set('toJson', {
+    transform: (document, returnedObject) => {
+        delete returnedObject.password
+    }
+})
+
 
 const User = mongoose.model('User' , userSchema)
 
