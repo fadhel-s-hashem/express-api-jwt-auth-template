@@ -11,8 +11,9 @@ const userSchema = new mongoose.Schema({
     },
 }, {timestamps: true})
 
-// so wehem call json noone see password (for now its error)
-userSchema.set('toJson', {
+// so wehem call json no one see password (for now its error)
+// toJSON must JSON be capital all letter
+userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         delete returnedObject.password
     }
