@@ -64,7 +64,7 @@ const signIn = async (req,res) => {
             username: req.body.username
         })
 
-        if (userInDatabase){
+        if (!userInDatabase){
             return res.status(404).json({err:'User dose not exit.'})
         }
 
