@@ -74,7 +74,11 @@ const signIn = async (req,res) => {
         if(!validPassword) {
             return res.status(401).json({ err: 'Login failed. Please try again.' })
         }
-        
+
+        //create a token for sign-in
+        const payload ={username: userInDatabase.username, _id: userInDatabase._id}
+        const token = jwt.sign({ payload }, process.env.JWT_SECRET)
+
     } catch (err) {
         
     }
