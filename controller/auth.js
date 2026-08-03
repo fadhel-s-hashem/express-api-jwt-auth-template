@@ -15,10 +15,11 @@ const signToken = (req,res) => {
 }
 
 const verifyToken = (req, res) => {
-    const token = req.headers.authorization
-    res.json({ message: 'token is valid' })
+    const token = req.headers.authorization.split(' ')[1]
+    // res.json({ message: 'token is valid' })
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-    res.json({ token })
+    res.json({ decoded })
 }
 
 module.exports ={
