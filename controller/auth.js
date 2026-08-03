@@ -57,6 +57,29 @@ const signUp = async (req,res) => {
     }
 }
 
+const signIn = async (req,res) => {
+    try {
+        // check if there user in database
+        const userInDatabase = await User.findOne({
+            username: req.body.username
+        })
+
+        if (userInDatabase){
+            return res.status(404).json({err:'User dose not exit.'})
+        }
+
+        // check if password matched
+        const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password)
+        
+        if(!validPassword) {
+            return res.status(401).json({ err: 'Login failed. Please try again.' })
+        }
+        
+    } catch (err) {
+        
+    }
+}
+
 module.exports ={
     // signToken,
     // verifyToken
