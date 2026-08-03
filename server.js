@@ -12,6 +12,8 @@ const morgan = require('morgan')
 
 const PORT = process.env.PORT ? process.env.PORT : "3000"
 
+const authCtrl = require('./controller/auth.js')
+
 mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on('connected', () => {
@@ -23,6 +25,7 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 // Routes go here
+app.get('/auth/sign-token', authCtrl.signToken)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)
