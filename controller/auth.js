@@ -79,8 +79,10 @@ const signIn = async (req,res) => {
         const payload ={username: userInDatabase.username, _id: userInDatabase._id}
         const token = jwt.sign({ payload }, process.env.JWT_SECRET)
 
+        res.status(200).json({ token })
+
     } catch (err) {
-        
+        res.status(500).json({ err: err.message })
     }
 }
 
@@ -88,4 +90,5 @@ module.exports ={
     // signToken,
     // verifyToken
     signUp,
+    signIn,
 }
